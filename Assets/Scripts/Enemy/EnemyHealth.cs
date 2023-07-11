@@ -13,21 +13,35 @@ public class EnemyHealth : MonoBehaviour
         enemy = GetComponent<EnemyAI>();
     }
 
-   public void ReduceHealth(float reduceHealth)  //parametre olarak canýn ne kadar azalacaðýný alýyo
+    private void Update()
     {
-        if (enemyHealth > 0)
+        if(enemyHealth < 0)
         {
-            enemyHealth -= reduceHealth;
+            enemyHealth = 0; //canýn 0'ýn altýna inmesini engelledik
+        }
+    }
+
+    public void ReduceHealth(float reduceHealth)  //parametre olarak canýn ne kadar azalacaðýný alýyo
+    {
+        enemyHealth -= reduceHealth;
+       
+
+        if (!enemy.isDead)
+        {
             enemy.Hurt();
         }
-       
-        else
+
+        if(enemyHealth <= 0)
         {
-            enemyHealth = 0f;
             enemy.DeadAnim();
-           
+            Dead();
         }
        
+    }
+
+    void Dead()
+    {
+        Destroy(gameObject, 10f);
     }
 
   

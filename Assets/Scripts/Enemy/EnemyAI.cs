@@ -23,16 +23,16 @@ public class EnemyAI : MonoBehaviour
     {
         float distance = Vector3.Distance(transform.position, target.position); //zombinin konumu ve ana karakterin konumu arasýndaki mesafeyi distance olarak tanýmladýk
 
-        if(distance<10 && distance>2 /*&& !isDead*/)
+        if(distance<10 && distance>2 && !isDead)
         {
             agent.updatePosition = true; //pozisyonu güncellenecek
             agent.SetDestination(target.position);
             anim.SetBool("isRunning", true);
             anim.SetBool("Attack", false); //koþarken atak yapamasýn
         }
-        else if( distance <2)
+        else if( distance <= 2)
         {
-            agent.updatePosition = false;
+            agent.updatePosition = false; //durarak atacak yapacak
             anim.SetBool("isRunning", false);
             anim.SetBool("Attack", true);
         }
@@ -42,18 +42,18 @@ public class EnemyAI : MonoBehaviour
     {
         agent.enabled = false;
         anim.SetTrigger("Hit");
-        StartCoroutine(Nav());
+     //   StartCoroutine(Nav());
     }
     
     public void DeadAnim()
     {
-       // isDead = true;
+        isDead = true;
         anim.SetTrigger("Dead");
     }
 
-    IEnumerator Nav()
+   /* IEnumerator Nav()
     {
         yield return new WaitForSeconds(.75f);
         agent.enabled = true;
-    }
+    }*/
 }
