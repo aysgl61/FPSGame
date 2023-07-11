@@ -22,7 +22,7 @@ public class Pistol : MonoBehaviour
 
     public float damage = 20f;
 
-    EnemyHealth enemy;
+   
 
     public ParticleSystem muzzleFlash;
 
@@ -41,7 +41,6 @@ public class Pistol : MonoBehaviour
     {
         UpdateAmmoUI();
         muzzleFlash.Stop(); //oyun baþladýðýnda çalýþmasýn
-        enemy = FindObjectOfType<EnemyHealth>();
         pistolAS = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
 
@@ -87,6 +86,7 @@ public class Pistol : MonoBehaviour
         {
             if (hit.transform.tag == "Enemy")
             {
+                EnemyHealth enemy = hit.transform.GetComponent<EnemyHealth>();
                 enemy.ReduceHealth(damage);
             }
             else

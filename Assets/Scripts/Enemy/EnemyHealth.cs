@@ -26,7 +26,7 @@ public class EnemyHealth : MonoBehaviour
         enemyHealth -= reduceHealth;
        
 
-        if (!enemy.isDead)
+        if (enemy.isDead == true)
         {
             enemy.Hurt();
         }
