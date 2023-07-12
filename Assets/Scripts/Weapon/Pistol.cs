@@ -41,6 +41,7 @@ public class Pistol : MonoBehaviour
     public AudioClip shootMetalAC;
 
     public GameObject bloodEffect;
+    public GameObject headShootBlood;
     private void Start()
     {
         UpdateAmmoUI();
@@ -93,6 +94,13 @@ public class Pistol : MonoBehaviour
                 EnemyHealth enemy = hit.transform.GetComponent<EnemyHealth>();
                Instantiate(bloodEffect, hit.point, transform.rotation);
                 enemy.ReduceHealth(damage);
+            }
+            else if (hit.transform.tag == "Head")
+            {
+                EnemyHealth enemy = hit.transform.GetComponentInParent<EnemyHealth>(); //parent'i içindeki scripte eriþeceðimiz için böyle yazdýk
+                enemy.ReduceHealth(100f); //kafasýna vurunca direkt ölecek
+                Instantiate(headShootBlood, hit.point, transform.rotation);
+                hit.transform.gameObject.SetActive(false);
             }
             else if (hit.transform.tag == "Metal")
             {
