@@ -72,7 +72,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    void UpdateText()
+    public void UpdateText()
     {
         healthText.text = currentHealth.ToString();
     }

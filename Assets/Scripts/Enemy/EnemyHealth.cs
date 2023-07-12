@@ -8,6 +8,7 @@ public class EnemyHealth : MonoBehaviour
 
     EnemyAI enemy;
 
+    public GameObject bloodEffect;
     private void Start()
     {
         enemy = GetComponent<EnemyAI>();
@@ -41,6 +42,7 @@ public class EnemyHealth : MonoBehaviour
 
     void Dead()
     {
+        bloodEffect.SetActive(true);
         enemy.canAttack = false; //enemy öldüðünde player'a zarar veremesin.
         Destroy(gameObject, 10f);
     }

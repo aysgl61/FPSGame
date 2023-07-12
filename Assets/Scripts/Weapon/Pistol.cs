@@ -40,7 +40,7 @@ public class Pistol : MonoBehaviour
     public GameObject bulletHole;
     public AudioClip shootMetalAC;
 
-  //  public GameObject bloodEffect;
+    public GameObject bloodEffect;
     private void Start()
     {
         UpdateAmmoUI();
@@ -91,7 +91,7 @@ public class Pistol : MonoBehaviour
             if (hit.transform.tag == "Enemy")
             {
                 EnemyHealth enemy = hit.transform.GetComponent<EnemyHealth>();
-            //   Instantiate(bloodEffect, hit.point, transform.rotation);
+               Instantiate(bloodEffect, hit.point, transform.rotation);
                 enemy.ReduceHealth(damage);
             }
             else if (hit.transform.tag == "Metal")
