@@ -9555,6 +9555,7 @@ MonoBehaviour:
   carried: {fileID: 1625441922}
   bulletHole: {fileID: 3148490820130206247, guid: d8473de0a068c63408399d1dd071025c, type: 3}
   shootMetalAC: {fileID: 8300000, guid: 05678d52271f7fe4e98b3106bbe3fe80, type: 3}
+  bloodEffect: {fileID: 186584, guid: b85ef8139fbcfa746b2954a470627418, type: 3}
 --- !u!82 &1172673672
 AudioSource:
   m_ObjectHideFlags: 0
@@ -10950,7 +10951,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.52
+      value: 55.81
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10958,7 +10959,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 16.57
+      value: 20.29
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_LocalRotation.w
