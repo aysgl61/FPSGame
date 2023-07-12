@@ -36,7 +36,13 @@ public class EnemyAI : MonoBehaviour
         }
         else if (distance <= agent.stoppingDistance && canAttack == true && PlayerHealth.PH.isDead== false) //player canlý ise, zombi ona saldýrabilsin
         {
-            AttackPlayer();
+            agent.updateRotation = false;
+            Vector3 direction = target.position - transform.position;  //zombi atak yaparken yüzünün player'a dönük olmasý için rotasyonunu ayarladýk
+            direction.y = 0;
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), turnSpeed * Time.deltaTime);
+            agent.updatePosition = false; //durarak atacak yapacak
+            anim.SetBool("isRunning", false);
+            anim.SetBool("Attack", true);
         }
         else if(distance > 10) //zombir, artýk takip etmesin
         {
@@ -56,15 +62,9 @@ public class EnemyAI : MonoBehaviour
 
     void AttackPlayer()
     {
-        agent.updateRotation = false;
-        Vector3 direction = target.position - transform.position;  //zombi atak yaparken yüzünün player'a dönük olmasý için rotasyonunu ayarladýk
-        direction.y = 0;
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction),turnSpeed*Time.deltaTime);
-        agent.updatePosition = false; //durarak atacak yapacak
-        anim.SetBool("isRunning", false);
-        anim.SetBool("Attack", true);
+        PlayerHealth.PH.Damage(damage);
 
-        StartCoroutine(AttackTime());
+        //  StartCoroutine(AttackTime());
     } 
 
     void StopChase()
@@ -93,12 +93,12 @@ public class EnemyAI : MonoBehaviour
         agent.enabled = true;
     }
 
-    IEnumerator AttackTime()
+  /*  IEnumerator AttackTime()
     {
         canAttack = false;
         yield return new WaitForSeconds(0.5f);
         PlayerHealth.PH.Damage(damage);
         yield return new WaitForSeconds(attackTimer); //caným azaldýktan sonra hemen atak yapamasýn. 2 sn sonra tekrar atak yapabilsin.
         canAttack = true;
-    }
+    }*/
 }

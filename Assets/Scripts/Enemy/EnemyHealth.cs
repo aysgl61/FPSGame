@@ -41,6 +41,7 @@ public class EnemyHealth : MonoBehaviour
 
     void Dead()
     {
+        enemy.canAttack = false; //enemy öldüðünde player'a zarar veremesin.
         Destroy(gameObject, 10f);
     }
 
