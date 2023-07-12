@@ -13,6 +13,13 @@ public class PlayerHealth : MonoBehaviour
 
     public Slider healthBarSlider;
     public Text healthText;
+
+    [Header("Damage Screen")] //Inspectro kýsmýnda Damage Screen diye bir baþlýk attý onun altýna da bu deðiþkenleri koydu
+    public Color damageColor;
+    public Image damageImage;
+    bool isTakingDamage = false;
+
+    float colorSpeed = 0.5f;
     private void Awake() //start fonkundan önce çalýþýr
     {
         PH = this;
@@ -32,6 +39,16 @@ public class PlayerHealth : MonoBehaviour
         {
             currentHealth = 0;
         }
+
+        if (isTakingDamage)
+        {
+            damageImage.color = damageColor;
+        }
+        else
+        {
+            damageImage.color = Color.Lerp(damageImage.color, Color.clear,colorSpeed*Time.deltaTime); //bir þeyin zamanla iki nokta arasýnda deðiþmesini istiyorsak Lerp veya Slerp kullaabiliriz. 
+        }
+        isTakingDamage = false;
     }
 
     public void Damage(float damage)
@@ -41,14 +58,17 @@ public class PlayerHealth : MonoBehaviour
         {
             if (damage >= currentHealth)
             {
+                isTakingDamage = true;
                 Dead();
             }
             else
             {
+                isTakingDamage = true;
                 currentHealth -= damage;
                 healthBarSlider.value -= damage;
                 UpdateText();
             }
+            
         }
     }
 

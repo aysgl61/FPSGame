@@ -37,6 +37,9 @@ public class Pistol : MonoBehaviour
     public Text current;
     public Text carried;
 
+    public GameObject bulletHole;
+    public AudioClip shootMetalAC;
+
     private void Start()
     {
         UpdateAmmoUI();
@@ -88,6 +91,11 @@ public class Pistol : MonoBehaviour
             {
                 EnemyHealth enemy = hit.transform.GetComponent<EnemyHealth>();
                 enemy.ReduceHealth(damage);
+            }
+            else if (hit.transform.tag == "Metal")
+            {
+                pistolAS.PlayOneShot(shootMetalAC);
+                Instantiate(bulletHole, hit.point,Quaternion.FromToRotation(Vector3.up,hit.normal));
             }
             else
             {
