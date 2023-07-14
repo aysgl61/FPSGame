@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Metal
   - Head
+  - Object
   layers:
   - Default
   - TransparentFX
