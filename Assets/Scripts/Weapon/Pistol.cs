@@ -39,6 +39,7 @@ public class Pistol : MonoBehaviour
 
     public GameObject bulletHole;
     public AudioClip shootMetalAC;
+    public AudioClip reloadAC;
 
     public GameObject bloodEffect;
     public GameObject headShootBlood;
@@ -118,6 +119,7 @@ public class Pistol : MonoBehaviour
     {
         if (carriedAmmo <= 0) return;
         anim.SetTrigger("Reload");
+        pistolAS.PlayOneShot(reloadAC);
         StartCoroutine(ReloadCountDown(2f));
         UpdateAmmoUI();
     }
