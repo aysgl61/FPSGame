@@ -1,26 +1,26 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class PlayerHealth : MonoBehaviour
 {
     public float currentHealth;
     public float maxHealth = 100f;
-    public static PlayerHealth PH; //static olduğu için diğer scriptlerde de gözükür. Yani tekrardan tanımlamamıza gerek yok PH yazınca bu scripte bağlanacak.  
+    public static PlayerHealth PH; //static olduÃ°u iÃ§in diÃ°er scriptlerde de gÃ¶zÃ¼kÃ¼r. Yani tekrardan tanÃ½mlamamÃ½za gerek yok PH yazÃ½nca bu scripte baÃ°lanacak.  
 
-    public bool isDead; //player ölü mü değil mi 
+    public bool isDead; //player Ã¶lÃ¼ mÃ¼ deÃ°il mi 
 
     public Slider healthBarSlider;
     public Text healthText;
 
-    [Header("Damage Screen")] //Inspectro kısmında Damage Screen diye bir başlık attı onun altına da bu değişkenleri koydu
+    [Header("Damage Screen")] //Inspectro kÃ½smÃ½nda Damage Screen diye bir baÃ¾lÃ½k attÃ½ onun altÃ½na da bu deÃ°iÃ¾kenleri koydu
     public Color damageColor;
     public Image damageImage;
     bool isTakingDamage = false;
 
     float colorSpeed = 0.5f;
-    private void Awake() //start fonkundan önce çalışır
+    private void Awake() //start fonkundan Ã¶nce Ã§alÃ½Ã¾Ã½r
     {
         PH = this;
     }
@@ -46,7 +46,7 @@ public class PlayerHealth : MonoBehaviour
         }
         else
         {
-            damageImage.color = Color.Lerp(damageImage.color, Color.clear,colorSpeed*Time.deltaTime); //bir şeyin zamanla iki nokta arasında değişmesini istiyorsak Lerp veya Slerp kullaabiliriz. 
+            damageImage.color = Color.Lerp(damageImage.color, Color.clear,colorSpeed*Time.deltaTime); //bir Ã¾eyin zamanla iki nokta arasÃ½nda deÃ°iÃ¾mesini istiyorsak Lerp veya Slerp kullaabiliriz. 
         }
         isTakingDamage = false;
     }
@@ -83,6 +83,12 @@ public class PlayerHealth : MonoBehaviour
         isDead = true;
         healthBarSlider.value = 0;
         UpdateText();
-        Debug.Log("Dead");
+        StartCoroutine(Wait());
+        SceneManager.LoadScene(1);
+    }
+
+    IEnumerator Wait() //sahneler arasÄ± geÃ§iÅŸi saÄŸlamak iÃ§in
+    {
+        yield return new WaitForSeconds(1f);
     }
 }
