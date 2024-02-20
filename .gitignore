@@ -10,6 +10,10 @@
 [Ll]ogs/
 [Uu]ser[Ss]ettings/
 
+/Assets/Assets/Main+Menu
+/Assets/Assets/TerrainSampleAssets
+/Assets/Assets/VillagePack
+/Assets/Assets/Environment
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/
